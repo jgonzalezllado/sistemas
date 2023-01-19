@@ -1,0 +1,13 @@
+!/bin/bash
+
+
+
+read -p "Introduce el nombre del archivo que busques: " archivo
+
+resultado=$(wc -l < "$archivo")
+
+echo "recuerda, que obviamente, tienes que haberlo creado primero para que te cuente las líneas"
+
+echo "L'arxiu de text té $resultado línies"
+
+#wc -l me cuenta las lineas, < es para reedirigir hcia el contenido y se guarda el resultado en la variable resultado

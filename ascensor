@@ -1,0 +1,38 @@
+#!/bin/bash
+
+echo "Bienvenido al asensor, introduce tu nombre de empleado"
+
+read  nombre
+
+echo "Hola $nombre"
+
+echo "Subiendo..."
+
+sleep 1s
+
+
+
+for floor in {1..17}
+
+do
+
+sleep 1s
+
+    
+
+    if [ $floor -eq 10 ]; then
+
+
+
+        continue
+
+    fi
+
+    echo "subiendo... planta :  $floor"
+
+done
+
+echo "has llegado a tu destino $planta"
+
+exit 1
+
