@@ -1,0 +1,286 @@
+#!/bin/bash
+
+# Función para cambiar a la sesión de texto
+function modo_texto {
+  echo "Cambiando a modo texto..."
+  sudo init 3
+  echo "Modo texto activado."
+}
+
+# Función para cambiar a la sesión gráfica
+function modo_grafico {
+  echo "Cambiando a modo gráfico..."
+  sudo init 5
+  echo "Modo gráfico activado."
+}
+
+# Menú para elegir modo
+echo "Elija un modo:"
+echo "1. Modo texto"
+echo "2. Modo gráfico"
+read -p "Opción: " opcion
+
+# Ejecutar la función correspondiente
+if [ $opcion -eq 1 ]; then
+  modo_texto
+elif [ $opcion -eq 2 ]; then
+  modo_grafico
+else
+  echo "Opción inválida."
+fi
+
+
+------------------------------------------------------
+#!/bin/bash
+
+# Archivo que contiene información sobre los usuarios conectados
+archivo=$(grep -l "wtmp begins" /var/log/wtmp*)
+
+echo "El archivo que contiene información sobre los usuarios conectados es: $archivo"
+
+
+---------------------------------------------------------------
+
+#!/bin/bash
+
+# Archivo que contiene información sobre las entradas fallidas al sistema
+archivo=$(grep -l "sshd" /var/log/auth.log*)
+
+echo "El archivo que contiene información sobre las entradas fallidas al sistema es: $archivo"
+
+read -p "¿Desea abrir el archivo para leerlo? (s/n) " respuesta
+
+if [ "$respuesta" == "s" ]; then
+    less $archivo
+else
+    echo "El archivo no se ha abierto."
+fi
+
+-----------------------------------------------------------------------
+
+#!/bin/bash
+
+# Script para mostrar el historial de sesiones de los usuarios
+
+# Obtener el nombre de usuario
+username=$(whoami)
+
+# Obtener el archivo de historial de sesiones
+history_file=~/.bash_history
+
+# Mostrar el contenido del archivo
+cat $history_file
+
+# Fin del script
+exit 0
+
+------------------------------------------
+
+definir variables:
+
+mensaje="Hola mundo"
+
+acceder:
+echo "El valor de la variable mensaje es: $mensaje"
+
+for:
+
+hacer que se salte el 5
+
+for i in {1..10}; do
+  if [ $i -eq 5 ]; then
+    continue
+  fi
+  echo $i
+done
+
+Igual a:
+bash
+Copy code
+numero=5
+if [ $numero -eq 5 ]; then
+  echo "El número es igual a 5"
+fi
+
+Distinto a:
+bash
+Copy code
+numero=5
+if [ $numero -ne 6 ]; then
+  echo "El número es distinto a 6"
+fi
+
+Comparación de cadenas de texto:
+bash
+Copy code
+palabra="hola"
+if [ "$palabra" == "hola" ]; then
+  echo "palabra es igual a 'hola'"
+fi
+
+palabra="hola"
+if [ "$palabra" != "adios" ]; then
+  echo "palabra es diferente a 'adios'"
+fi
+
+#!/bin/bash
+
+# Demanar el nom de l'usuari
+echo "Com et dius?"
+read nom
+
+# Demanar l'edat de l'usuari
+echo "Quants anys tens?"
+read edat
+
+# Calcular la quantitat de diners que l'usuari es farà
+aleatori=$((RANDOM % 5 + 1))
+ric=$((aleatori + edat))
+
+# Mostrar la frase
+echo "$nom, et faràs ric quan tinguis $ric anys."
+
+
+#!/bin/bash
+
+# Treguem un nombre aleatori
+aleatori=$((RANDOM % 2))
+
+# Mostrar la frase
+echo "S'aproxima un monstre. Prepara't per la batalla, elegeix un nombre entre 0 i 1."
+
+# Demanar el nombre elegit per l'usuari
+read nombre_usuari
+
+# Comprovar si el nombre elegit per l'usuari és igual al nombre aleatori
+if [ $nombre_usuari -eq $aleatori ]; then
+  echo "El monstre ha mort, enhorabona!!"
+else
+  echo "Has mort."
+fi
+
+
+-----------------------------------------------------
+
+#!/bin/bash
+
+# Genera un número aleatorio
+random=$RANDOM
+random=$((random%2))
+
+# Pregunta al usuario por su nombre
+echo "Elige un número entre 0 y 1"
+read num
+
+# Comprueba si el número elegido es igual al número aleatorio
+if [ $num -eq $random ]; then
+  echo "El monstruo ha muerto, ¡enhorabuena!"
+else
+  echo "Has muerto."
+  exit 1
+fi
+
+# Genera un nuevo número aleatorio
+random=$RANDOM
+random=$((random%10))
+
+# Pregunta al usuario por un nuevo número
+echo "Batalla con un boss. Estás asustado! Elige un número entre 0 y 9."
+read num
+
+# Comprueba si el número elegido es igual al número aleatorio
+if [ $num -eq $random ]; then
+  echo "El monstruo ha muerto, ¡enhorabuena!"
+else
+  echo "Has muerto."
+  exit 1
+fi
+
+
+
+
+#!/bin/bash
+
+# Generar un número aleatorio entre 0 y 9
+random=$((RANDOM%10))
+
+echo "S'aproxima un monstre. Prepara't per la batalla, elegeix un nombre entre 0 i 9."
+read -p "El teu nombre: " num
+
+# Comprobar si el número elegido es igual al número aleatorio o "ocell"
+if [ "$num" == "$random" ] || [ "$num" == "ocell" ]; then
+  echo "El monstre ha mort, enhorabona!!"
+elif [ "$num" -lt "$random" ] || [ "$num" -gt "$random" ]; then
+  echo "Has mort."
+  echo "exit 1"
+  echo "Batalla amb un boss. Estas asustat!. Elegeix un nombre entre 0 i 9."
+  read -p "El teu nombre: " num
+
+  # Comprobar si el número elegido es igual al número aleatorio
+  if [ "$num" == "$random" ]; then
+    echo "El monstre ha mort, enhorabona!!"
+  else
+    echo "Has mort."
+    echo "exit 1"
+  fi
+fi
+
+------------------------------------------------------
+#!/bin/bash
+
+echo "Bienvenido al asensor, introduce tu nombre de empleado"
+
+read  nombre
+
+echo "Hola $nombre"
+
+echo "Subiendo..."
+
+sleep 1s
+
+
+
+for floor in {1..17}
+
+do
+
+sleep 1s
+
+    
+
+    if [ $floor -eq 10 ]; then
+
+
+
+        continue
+
+    fi
+
+    echo "subiendo... planta :  $floor"
+
+done
+
+echo "has llegado a tu destino $planta"
+
+exit 1
+------------------------------------------------------------
+#!/bin/bash
+
+read -p " Introduce el nombre de tu archivo " archivo resultado=$(wc -m <"$archivo.txt") echo "
+el archivo tiene $resultado caracteres"
+
+
+
+
+
+-----------------------------------------
+
+
+
+
+
+
+
+
+
+
