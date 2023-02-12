@@ -1,0 +1,109 @@
+//DECLARAR VARIABLE
+
+nombre_de_variable=valor
+
+nombre="John Doe"
+edad=30
+
+// acceder variable: 
+
+/* echo "Mi nombre es $nombre y tengo $edad años."
+
+
+BUCLE FOR
+CUENTA HASTA 5
+
+for i in 1 2 3 4 5
+do
+  echo $i
+done
+
+----------------------------------------------
+
+SALTARTE EL 9
+
+for i in {1..10}
+do
+  if [ $i -eq 9 ]; then
+    continue
+  fi
+  echo $i
+done
+
+
+
+
+IGUALDAD
+
+num1=5
+num2=10
+if [ $num1 -eq $num2 ]; then
+  echo "Los valores son iguales."
+else
+  echo "Los valores son diferentes."
+fi
+
+
+-ne --> diferente
+-lt --> menor que
+-le --> menor o igual a 
+-gt mayor que
+-ge mayor o igual a
+
+
+
+nº random:
+
+#!/bin/bash
+
+echo "Introduce un número: "
+read num
+
+if [ $num -eq 0 ]; then
+  rand=$(( RANDOM % 100 ))
+  echo "El número aleatorio generado es: $rand"
+else
+  echo "El número introducido no es 0."
+fi
+
+
+-------------------------------------
+
+echo "S'aproxima un monstre. Prepara't per la batalla"
+echo "Elegeix un nombre entre 0 i 1:"
+read num_usuari
+
+num_aleatori=$(( RANDOM % 2 ))
+
+if [ $num_usuari -eq $num_aleatori ]; then
+  echo "El monstre ha mort, enhorabona!!"
+else
+  echo "Has mort."
+fi
+------------------------------
+
+ASIGNAR PERMISOS AUTOMATICAMNENTE
+
+#!/bin/bash
+
+echo "Introduce el nombre del archivo: "
+read file_name
+
+if [ ! -f $file_name ]; then
+  echo "#!/bin/bash" > $file_name
+  nano $file_name
+  chmod +x $file_name
+else
+  echo "El archivo ya existe."
+fi
+
+
+
+
+
+
+
+
+
+
+*/

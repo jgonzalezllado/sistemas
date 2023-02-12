@@ -1,0 +1,72 @@
+#!/bin/bash
+
+echo "Introduce el nombre del archivo que deseas copiar:"
+read file_name
+
+echo "¿Deseas crear un directorio para copiar el archivo? (s/n)"
+read create_dir
+
+if [ "$create_dir" == "s" ]; then
+  echo "Introduce el nombre del directorio:"
+  read dir_name
+
+  mkdir $dir_name
+  cp $file_name $dir_name
+else
+  cp $file_name .
+fi
+
+------------------------------------
+
+#!/bin/bash
+
+echo "Introduce el nombre del archivo que deseas crear:"
+read file_name
+
+if [[ ! "$file_name" == *".txt" ]]; then
+  file_name="$file_name.txt"
+fi
+
+touch $file_name
+
+echo "¿Deseas crear un directorio para copiar el archivo? (s/n)"
+read create_dir
+
+if [ "$create_dir" == "s" ]; then
+  echo "Introduce el nombre del directorio:"
+  read dir_name
+
+  mkdir $dir_name
+  cp $file_name $dir_name
+else
+  cp $file_name .
+fi
+
+CON PERMISOS
+
+#!/bin/bash
+
+echo "Introduce el nombre del archivo que deseas crear:"
+read file_name
+
+if [[ ! "$file_name" == *".txt" ]]; then
+  file_name="$file_name.txt"
+fi
+
+touch $file_name
+chmod u+rw $file_name
+
+echo "¿Deseas crear un directorio para copiar el archivo? (s/n)"
+read create_dir
+
+if [ "$create_dir" == "s" ]; then
+  echo "Introduce el nombre del directorio:"
+  read dir_name
+
+  mkdir $dir_name
+  cp $file_name $dir_name
+  chmod u+rw $dir_name/$file_name
+else
+  cp $file_name .
+  chmod u+rw $file_name
+fi

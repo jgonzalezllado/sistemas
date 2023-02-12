@@ -1,38 +1,15 @@
 #!/bin/bash
 
-echo "Bienvenido al asensor, introduce tu nombre de empleado"
+echo "Bienvenido al ascensor de hotel $(whoami)"
+echo "Nos dirigimos hacia arriba"
 
-read  nombre
-
-echo "Hola $nombre"
-
-echo "Subiendo..."
-
-sleep 1s
-
-
-
-for floor in {1..17}
-
-do
-
-sleep 1s
-
-    
-
-    if [ $floor -eq 10 ]; then
-
-
-
-        continue
-
-    fi
-
-    echo "subiendo... planta :  $floor"
+for ((i=1; i<=17; i++)); do
+    sleep 1s
+  if [ $i -eq 10 ]; then
+    echo "Saltando planta 10"
+    continue
+  fi
+  echo "Estamos en la planta $i"
 
 done
-
-echo "has llegado a tu destino $planta"
-
-exit 1
-
+  echo "Hemos llegado"

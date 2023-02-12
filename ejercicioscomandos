@@ -1,0 +1,18 @@
+grafico a texto 
+init 3
+usuarios conectados
+who 
+Para ver los registros de inicio de sesión fallidos,
+grep "Failed password" /var/log/secure
+historial sesion 
+last 
+
+
+Para crear un archivo "mensaje" con un texto, se puede usar el siguiente comando:
+echo "texto del mensaje" > mensaje
+
+
+Para visualizar el directorio $HOME del usuario conectado, se puede usar el siguiente comando:
+echo $HOME
+
+

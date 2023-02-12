@@ -1,0 +1,44 @@
+$ sudo fdisk –l --> nos lista y vemos espacio
+$ sudo fdisk /dev/sdb  
+borrar particiones***
+pulsamos d
+numero de particion: 1
+orden: d numero de particion : 2
+d
+n 
+primaria (1) 
+tamaño por defecto 
+validar cambios con w 
+salir con q 
+$ sudo fdisk -l --> para volver a listar 
+$ sudo mkfs.ext4 /dev/sdb1 --> para crear sistema de archivo 
+$ sudo e2label /dev/sdb1 ejercicios --> asignar etiqueta
+$ sudo mount /dev/sdb1 /media  --> version corta de mount 
+$ sudo mount | grep -i sdb1
+/dev/sdb1 on /data type ext4 (rw, relatime) --> comprobar montado 
+sudo umount /media --> desmontar particion 
+
+------------------------------
+comprobacion sistema fichero
+
+$ sudo fsck /dev/sdb1
+fsck de util-linux 2.34
+e2fsck 1.45.5 (07-Jan-2020)
+ejercicios: limpio, 11/122400 ficheros, 17318/489216 bloques
+Podemos obtener información del dispositivo ejecutando la orden siguiente:
+$sudo e2fsck -fy /dev/sdb1
+e2fsck 1.45.5 (07-Jan-2020)
+Paso 1: Verificando nodos-i, bloques y tamaños
+Paso 2: Verificando la estructura de directorios
+Paso 3: Revisando la conectividad de directorios
+Paso 4: Revisando las cuentas de referencia
+Paso 5: Revisando el resumen de información de grupos
+ejercicios: 11/122400 ficheros (0.0% no contiguos), 17318/489216 bloques
+
+
+---------------------------------------------
+
+sudo findmnt
+/media/elvira/ejercicios /dev/sdb1 ext4 rw,nosuid,nod   --> comprobarmontaje
+$ sudo lsblk --> muestra info de particion montada
+-------------------------------

@@ -23,3 +23,9 @@ do
     sleep 2
 
 done
+
+-q: es una opción que hace que el comando ping sea más silencioso, sin mostrar mensajes innecesarios.
+-c: especifica el número de paquetes ping que se deben enviar. En este caso, son 2 paquetes.
+-W: especifica el tiempo de espera en segundos antes de abandonar el envío de paquetes ping. En este caso, es 1 segundo.
+$pagina: es una variable que contiene la dirección IP o nombre de dominio de la página web o servidor que se desea verificar.
+
