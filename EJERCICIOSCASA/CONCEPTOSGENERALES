@@ -98,6 +98,39 @@ else
 fi
 
 
+ls: Lista los archivos y carpetas en el directorio actual.
+cd: Cambia de directorio a la ruta especificada.
+mkdir: Crea una nueva carpeta en el directorio actual o en la ruta especificada.
+touch: Crea un archivo vacío o actualiza la fecha de modificación de un archivo existente.
+rm: Elimina archivos o carpetas. La opción "-r" es necesaria para eliminar carpetas y su contenido.
+cp: Copia archivos y carpetas. La opción "-r" es necesaria para copiar carpetas y su contenido.
+mv: Mueve archivos y carpetas de una ubicación a otra.
+cat: Muestra el contenido de un archivo.
+head: Muestra las primeras líneas de un archivo.
+tail: Muestra las últimas líneas de un archivo.
+grep: Busca una cadena de texto en un archivo o en varios archivos.
+ps: Muestra los procesos que se están ejecutando en el sistema.
+top: Muestra los procesos que consumen más recursos del sistema.
+kill: Detiene un proceso en ejecución.
+ping: Verifica la conexión de red con una dirección IP o un nombre de dominio.
+ifconfig: Muestra la configuración de red actual de la interfaz de red.
+ip: Es una herramienta de red para configurar y mostrar la información de la red.
+sudo: Permite a un usuario ejecutar comandos con permisos de administrador.
+chmod: Cambia los permisos de un archivo o carpeta.
+chown: Cambia el propietario y el grupo de un archivo o carpeta.
+
+
+----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 
 
