@@ -1,0 +1,12 @@
+Julia Gonzalez
+guarda en la variable contador el nº total de comandos linux que hay en el direcorio/bin y luego visualiza este valor
+
+#!/bin/bash
+
+# contar el número de comandos en /bin y guardarlo en la variable contador
+contador=$(ls /bin | wc -l)
+
+# mostrar el valor de la variable contador
+echo "El número total de comandos en /bin es: $contador"
+En este script, la variable contador se inicializa con el resultado de ejecutar el comando ls /bin | wc -l, que cuenta el número de archivos en el directorio /bin. Luego, utilizamos el comando echo para mostrar el valor de la variable contador.
+
