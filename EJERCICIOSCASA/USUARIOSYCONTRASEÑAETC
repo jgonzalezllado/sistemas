@@ -1,0 +1,95 @@
+Valores del archivo /etc/passwd
+A continuación vamos a ver qué significa cada uno de los valores que nos vamos a encontrar en cada una de las líneas del fichero /etc/passwd:
+
+Valores del archivo /etc/passwd
+ 
+
+Nombre de usuario→ Este se utiliza cuando el usuario inicia sesión. Debe tener entre 1 y 32 caracteres de longitud.
+Contraseña→ El carácter x nos va a indicar que la contraseña cifrada se almacena en el archivo /etc/shadow.
+ID de usuario (UID)→ A cada usuario se le asigna un ID de usuario (UID) unívoco en el sistema. El UID 0 está reservado para root y los UID 1-99 están reservados para otras cuentas predefinidas. El sistema va a reservar otros UID del 100 al 999 para cuentas/grupos administrativos y del sistema.
+ID de grupo (GID)→ Este es el ID del grupo principal al que pertenece el usuario (almacenado en el archivo /etc/group).
+Información del de usuario (GECOS)→ Aquí encontraremos el campo de comentario. En este se permite añadir información adicional sobre los usuarios, como son el nombre completo, el número de teléfono, etc.
+Directorio de inicio→ Aquí nos encontraremos con la ruta absoluta al directorio “home” del usuario. Si este directorio no existe, el directorio de usuarios se convierte en /.
+Shell→ Esta es la ruta absoluta del shell (/bin/bash). Aun que podría no ser un shell como tal. Si el shell se establece en /sbin/nologin y el usuario intenta iniciar sesión en el sistema Gnu/Linux directamente, el shell /sbin/nologin va a cerrar la conexión.
+
+sudo useradd <nombre_de_usuario>
+sudo passwd <nombre_de_usuario>
+sudo adduser <nombre_de_usuario>
+sudo groupadd <nombre_del_grupo>
+sudo deluser <nombre_de_usuario>
+sudo delgroup <nombre_del_grupo>
+
+También podemos eliminar un grupo y todos sus usuarios con el siguiente comando:
+
+
+sudo delgroup --only-if-empty <nombre_del_grupo>
+
+
+En el caso de que queramos eliminar un usuario y su directorio de inicio, debemos utilizar el siguiente comando:
+
+sudo deluser --remove-home <nombre_de_usuario>
+
+#!/bin/bash
+
+# Pedimos al usuario el nombre del grupo
+read -p "Ingrese el nombre del grupo: " group_name
+
+# Creamos el grupo
+groupadd $group_name
+
+# Pedimos al usuario el nombre del usuario
+read -p "Ingrese el nombre del usuario: " user_name
+
+# Creamos el usuario y lo agregamos al grupo
+useradd -m -G $group_name $user_name
+
+# Pedimos al usuario el nombre del directorio en el que se establecerán los permisos
+read -p "Ingrese el nombre del directorio: " directory_name
+
+# Creamos el directorio
+mkdir $directory_name
+
+# Establecemos los permisos del directorio para el grupo del usuario
+chown -R root:$group_name $directory_name
+chmod -R 770 $directory_name
+
+# Mostramos un mensaje de confirmación
+echo "Se ha creado el usuario $user_name en el grupo $group_name y se han establecido los permisos en el directorio $directory_name."
+En Ubuntu, los permisos de archivo y directorio se pueden asignar usando el comando chmod. Los permisos se pueden asignar a los usuarios y grupos de la siguiente manera:
+
+r: Permite leer el archivo o directorio.
+w: Permite escribir en el archivo o directorio.
+x: Permite ejecutar el archivo o acceder al directorio.
+Los permisos se pueden asignar a tres tipos de usuarios: el propietario del archivo o directorio, el grupo al que pertenece el archivo o directorio y otros usuarios.
+
+Para asignar permisos, el comando chmod se utiliza junto con un número de tres dígitos que representa los permisos. Cada dígito representa los permisos para un tipo de usuario. El primer dígito representa los permisos para el propietario del archivo, el segundo para el grupo y el tercero para otros usuarios. Cada dígito se calcula como la suma de los permisos, donde r=4, w=2 y x=1.
+
+Por ejemplo, el número 777 significa permisos totales para todos los usuarios, el número 755 significa permisos totales para el propietario y permisos de lectura y ejecución para otros usuarios, y el número 644 significa permisos de lectura y escritura para el propietario y permisos de lectura para otros usuarios.
+
+Aquí hay algunos ejemplos de cómo asignar permisos en Ubuntu usando el comando chmod:
+
+Asignar permisos de lectura, escritura y ejecución al propietario, y permisos de lectura y ejecución al grupo y otros usuarios en un archivo:
+
+bash
+Copy code
+chmod 755 archivo.txt
+Asignar permisos de lectura y escritura al propietario y permisos de lectura a otros usuarios en un directorio:
+
+bash
+Copy code
+chmod 755 directorio/
+Asignar permisos de escritura al grupo en un archivo:
+
+bash
+Copy code
+chmod g+w archivo.txt
+Asignar permisos de ejecución al propietario en un archivo:
+
+bash
+Copy code
+chmod u+x archivo.txt
+Asignar permisos de lectura y escritura al grupo y otros usuarios en un directorio y sus subdirectorios:
+
+bash
+Copy code
+chmod -R 666 directorio/
