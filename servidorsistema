@@ -126,3 +126,64 @@ ahora ponemos sudo ldapadd -x -D cn=admin,dc=julia,dc=server -W -f content.ldif
 si nos da error uno entramos y borramos el que haya ido bien.
 fijamos en espacio, despues de los : tiene que haber espacio
 
+ahora configurar el cliente
+
+sudo apt-get install libpam-ldap libnss.ldap nss-updatedb libnss-db nscd ldap-utils
+
+ldap://192.168.0.1
+
+
+modificamos 3 ficheros
+
+/etc/ldap.conf
+revisar linea uri ldap.//ipservidor
+buscar linea bind_policy y cambiar hard por soft descomentar linea
+buscamos linea
+pam_password md5 y sustituimos md5 por crypt
+
+
+segundo fichero:
+
+/etc/ldap/ldap.conf
+configuramos lo siguiente en el bloc 
+
+base dc=example,dc=com
+hay que dejarlo asi
+
+BASE dc=julia,dc=server
+URI ldap://ldap.julia.server
+SIZELIMIT 0
+TIMELIMIT 15
+DEREF never
+
+
+/etc/nsswitch.conf
+
+localizamos 
+passwd: files ldap
+group: files ldap
+shadow: files ldap
+gshadow: files ldap
+host: files dns
+networks: files
+
+
+
+protocolos: db files
+services: db files
+ethers: db files
+rpc: db files
+netgroup: nis 
+
+lanzamos la siguiente orden para cargar toda la base de datps
+
+sudo nss_updatedb ldap
+
+lanzar la siguiente orden 
+getent passwd
+han de aparecer los usuarios que hemos creado
+
+deberiamos ver el usuario juan
+
+actualizamos base de datos
+sudo pam-auth-update
