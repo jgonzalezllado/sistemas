@@ -41,3 +41,88 @@ sudo apt install --no-install-recommends lubuntu-desktop login
 
 https://eltallerdelbit.com/cambiar-ip-en-ubuntu/
 
+
+
+
+1.configurar una ip
+2. Modificar archivos llamado base,lif y otro que se llama content.lift  -- diferencias en el primero se ponen una serie de codigos para configurarlos, nos da la estructura de mi controladora de dominio. ( si tendra usuarios, ud, etc) despues tendremos el content, que lo que hace permitir crear objetos.
+ahi se crean los grupos las ud y los usuarios. Ahí se ponen las credenciales de los usuarios, nombre, contraseña , grupo al que pertenece, la shell que usa... 
+
+meter en la maquina una tarjeta de red, una NAT y otra adaptador interno
+
+hay que darle una ip fija a la red, 192.168.0.1 ( nos inventamos una)
+esto se configura en el servidor.
+
+-- en la maquina cliente se añade otra interfaz y ponemos la ip del servidor.
+
+
+
+sudo ifconfig enp0s8 up
+
+ifconfig 192.168.0.1 255.255.255.0
+hay que hacerlo tanto en cliente server
+
+sudo nano /etc/hosts 
+debajo de las ip poner ip de nuestro server y luego julia.server
+
+--configurar servidor hererdado sin phpadmin
+
+sudo slapcat para que salga la info que tengamos
+
+ahora vamos al paso 1
+
+definimos nuestra estructura
+sudo nano base.ldif
+
+dn: ou=usuarios,dc=julia,dc=server
+objectClass: organizationalUnit
+objectclass: top
+ou:usuarios
+
+dn: ou=grupos,dc=julia,dc=server
+objectClass: organizationalUnit
+objectClass: top
+ou:grupos
+
+
+ahora habría que comprobarlo
+
+sudo ldapadd -x -D cn=admin,dc=julia,dc=server -W -f base.ldif
+
+es poner tu contraseña y si te sale adding new entry esq esta todo ok
+
+--------------------
+
+ahora hay que modificar el content
+
+sudo nano content.ldif
+
+copiamos ahi el siguiente codigo
+
+dn: cn:alumnes,ou=grupos,dc=julia,dc=server
+objectClass: posixGroup
+cn: alumnes
+gidNumber: 10000
+memberUID: alumnes
+
+dn: uid= joan,ou= usuarios,dc= julia,dc= server
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+cn: joan
+sn: asix
+userPassword: 12345
+loginShell: /bin/bash
+uidNumber: 2002
+gidNumber: 10000
+homeDirectory: /home/joan
+
+
+
+*habria que cifrar la contraseña en realidad*
+
+ahora ponemos sudo ldapadd -x -D cn=admin,dc=julia,dc=server -W -f content.ldif
+
+si nos da error uno entramos y borramos el que haya ido bien.
+fijamos en espacio, despues de los : tiene que haber espacio
+
