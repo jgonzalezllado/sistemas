@@ -1,0 +1,43 @@
+sudo apt-get install slapd 
+sudo apt-get install ldap-utils -- te instala servidor heredado te permite gestionar
+sudo apt-get install phpldapadmin -- nos instala la interfaz para gestionar 
+
+sudo dpkg-reconfigure slapd  -- le da nombre a nuestro dominio
+
+dns julia
+julia.server
+431992
+hacer prueba
+nano /etc/phpldapadmin/configi.php   -- es el archivo que modificaremos para trastear el servidor
+localizar con control w 'server', 'name'   -- para modificar nombre
+'server', 'host' -- aqui se pone la ip
+'server', 'base', array --> cambiar example por nuestro server y dc =local en vez de com
+'login', 'bind_id'  poner otra vez julia y server  como el anterior ** ojo, que no este comentado**
+nuestro login sera admin 
+buscar por 1000  y descomentarla y cambiamos por 2000 y 1500
+
+ahora hay que instalar una interficie grafica
+
+sudo apt dist-upgrade
+sudo apt install --no-install-recommends lubuntu-desktop
+127.0 /phpldapadmin
+
+
+una vez dentro usr/share/phpldapadmin htdocs lib copiar esas carpetas dentro de home
+despues borrarlas con un rm dentro de phpadmin
+descomprimir y pasarla a phplapadmin
+
+nuero gid es el grupo 
+consola login dejar como bash
+crear unidad organizzativa, grupo y usuario
+
+comando equivalente a gpresult
+
+desde terminal habiendo creado todo
+
+sudo slapcat
+127.0.0.1
+sudo apt install --no-install-recommends lubuntu-desktop login
+
+https://eltallerdelbit.com/cambiar-ip-en-ubuntu/
+
