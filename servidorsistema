@@ -125,13 +125,19 @@ ahora ponemos sudo ldapadd -x -D cn=admin,dc=julia,dc=server -W -f content.ldif
 
 si nos da error uno entramos y borramos el que haya ido bien.
 fijamos en espacio, despues de los : tiene que haber espacio
-
+-----------------------------------------------------
 ahora configurar el cliente
 
-sudo apt-get install libpam-ldap libnss.ldap nss-updatedb libnss-db nscd ldap-utils
+sudo apt-get install libpam-ldap libnss-ldap nss-updatedb libnss-db nscd ldap-utils
+
 
 ldap://192.168.0.1
-
+dc=julia,dc=server
+version 3ldap
+YES
+no consultas de login
+cn:admin,dc=prova.dc=local
+password
 
 modificamos 3 ficheros
 
@@ -158,6 +164,11 @@ DEREF never
 
 
 /etc/nsswitch.conf
+
+passwd: files systemd
+group: files systemd
+shador: files
+gshadow: files
 
 localizamos 
 passwd: files ldap
