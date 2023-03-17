@@ -228,3 +228,33 @@ y buscar esta linea
 pam_ldap.so eliminar  lo ultimo
 tiene que quedar asi
 password  [success=1 user_unknown=ignore default=die]     pam_ldap.so 
+
+
+
+-------------------------
+
+
+de cara al examen
+
+unzip nombrearchivo
+
+rm -F nombrearchivo para borrar
+
+cp archivo /directorio
+
+ifconig enp0s8 up levantar interfaz / down
+
+ifconfig enp0s8 192.168.0.1  para meter la ip
+
+ifconfig enp0s8 para comprobar si metio la ip
+
+ifconfig -a
+
+para comprobar si el heredado funciona
+
+sudo slapcat  ca info sobre el servidor heredado pone las ud los grupos y usuarios
+
+base para la estructura del servidor ud y grupo
+content para crear diferentes usuarios, objetos
+cuando hablamos de grupos usuarios es objetos.
+
