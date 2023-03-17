@@ -1,3 +1,8 @@
+
+**SUPER IMPORTANTE CLIENTE Y SERVIDOR TIENEN QUE HACER PING
+ACORDARSE QUE SE RESETEA LA IP , PONER EN BASHRC OCNFIGURACION
+
+
 sudo apt-get install slapd 
 sudo apt-get install ldap-utils -- te instala servidor heredado te permite gestionar
 sudo apt-get install phpldapadmin -- nos instala la interfaz para gestionar 
@@ -142,7 +147,7 @@ password
 modificamos 3 ficheros
 
 /etc/ldap.conf
-revisar linea uri ldap.//ipservidor
+revisar linea uri ldap//ipservidor
 buscar linea bind_policy y cambiar hard por soft descomentar linea
 buscamos linea
 pam_password md5 y sustituimos md5 por crypt
@@ -188,6 +193,8 @@ netgroup: nis
 
 lanzamos la siguiente orden para cargar toda la base de datps
 
+tienen que estar cliente y servidor en marcha
+
 sudo nss_updatedb ldap
 
 lanzar la siguiente orden 
@@ -198,3 +205,26 @@ deberiamos ver el usuario juan
 
 actualizamos base de datos
 sudo pam-auth-update
+
+marcar todo en astedisco
+
+
+172.16.136.40
+
+-----------------------------------------
+
+EDITAR 2 FICHEROS
+
+sudo nano /etc/pam.d/common-session
+
+session required pam_nkhomedir.so skel=/etc/skel/ umask=002
+
+edutar este otro fichero
+
+hacer lo mismo descomentar y comentar
+sudo nano /etc/pam.d/common-password
+
+y buscar esta linea
+pam_ldap.so eliminar  lo ultimo
+tiene que quedar asi
+password  [success=1 user_unknown=ignore default=die]     pam_ldap.so 
