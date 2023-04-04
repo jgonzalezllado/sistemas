@@ -258,3 +258,93 @@ base para la estructura del servidor ud y grupo
 content para crear diferentes usuarios, objetos
 cuando hablamos de grupos usuarios es objetos.
 
+scp -r -O 22 nombrearchivo julia@ipservidor:/directorio
+se hace desde la otra ip(cliente)
+
+disco 2 gb
+
+hacer particion de 1 gb
+
+sudo fdisk -l  comprobamos discos
+fdisk /dev/sdb
+p para ver las particiones
+n para opcion de creado
+
+enter y enter
++1GB o el tamaño que queramos
+
+
+
+cuota de disco, hay que ser sobre una partición.
+
+normalmente en media, ya que es el sitio donde se suelen montar.
+
+ahora veremos como hacer para que se monte siempre esta partición.
+
+sudo nano /etc/fstab
+
+#particiocuota  crear cuota para usuario local
+uid de la particion (donde hace referencia) /media/cuota ext4 defaults, usrs
+sudo blkid para ver la uid
+ca3eaf3d
+UID=KJLSADKJLA /media/cuota ext4 defaults,usrquota,grpquota 0 1 
+
+/media/cuota sistema de archivos ext4 defaults,usrquota,grpquota 0 1 (separados)
+
+para gestionas las cuotas hay que instalarlas
+
+sudo apt install quota quotatool
+
+luego se crea un usuario
+
+una vez reiniciado
+
+se ha de activar las cuotas con un comando.
+
+1º se crea un arch
+
+sudo quotacheck -cug /media/cuota   (directorio)
+
+comprobar en el medio extraible
+
+tiene que haber creado dos archivos
+
+activar cuota
+
+sudo quotaon -v /media/cuota
+definir quota a usuario( tamaño que va a emplear)
+bloks y inodes son los que usan el usuario y no se pueden modificar
+soft 1024
+hard 512
+sudo edquota -u prueba
+
+una vez definido, se guarda y se inicia la sesion con el usuario
+y nos vamos dentro de esta particion 
+luego cerrar sesion e ir a admoinistrador
+tiene que haber cambiado usuarios y nodos
+
+volver a tener sudo edquota -u prueba
+
+
+esto sirve para definir el tamaño de cuota , linux usa nodos y blopques. nodos es el identificador del bloque.
+
+
+
+
+62a786a8-a8da-4ca2-83f6-5a991b836e11
+
+UUID="62a786a8-a8da-4ca2-83f6-5a991b836e11 /media/cuota ext4     user,errors=remount -ro,auto,exec,usrquota,grpquota 0 1
+
+fallocate -l 0,40 fichero  / crear comando de 10m
+
+
+programar tareas a través de linux
+/etc/crontab
+*****touch/home/nadal/hola.txt
+10,20,30**** al 10 al 20 al 30
+10-20**** desde 10 a 20
+
+
+*/15 **** lo que quieres hacer(touch, cp, sh comando) (que quiere hacer) hola.txt
+
+cada 15 seg hara un touch de hola.txt

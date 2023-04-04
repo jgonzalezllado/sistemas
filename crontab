@@ -1,0 +1,66 @@
+sudo nano /etc/crontab 
+
+touch /home/julia/hola.sh 
+3 columna 
+
+primera 
+
+segunda que hace
+tercera columna directorio
+
+para comprobar que funciona
+se crea un script para hacer un ls -l > hola.txt 
+de esta forma se sabra que lo habrá creado, ya que lo pone dentro del archivo
+
+desde el sh %d_%H%M%S
+hora minuto segundo
+3/04/23.txt 
+
+hacer copia del etc
+cp /etc 
+
+comando para resumen de cuota
+
+
+
+repquota /media/cuota  //para hacer un listado de usuarios
+
+
+1. El administrador del sistema necesita ejecutar un programa (script.sh, ubicado en el 
+ directorio /tareas_cron) dos veces al día, a las 3 a.m y a las 3 p.m.  
+
+
+
+
+
+2. El administrador necesita ejecutar el programa backup.sh, Ubicado en el directorio  /tareas_cron, cuyo objetivo es hacer una copia de seguridad de los archivos de  configuración del sistema (/etc), solo el día 25 de todos los meses a las 6:30 a.m.  3. Averiguar cómo se podría programar el cron para que ejecute job.sh cada 30 segundos.  
+El administrador necesita cada día, a las 5:00 de la mañana hacer un control de los sistemas de  archivos con cuotas.  
+Se recomienda repasar el punto A del apartado correspondiente, en el que se encuentran  ejemplos que pueden servir de guía. 
+
+
+* 
+
+crontab -E
+
+* * * * * 
+* 3,15 * * * sh o /bin/bash ahora hay que poner donde esta /home/julia/nombrescript.sh  
+
+* 3,15 * * * sh /home/julia/cron_tab/script.sh
+
+antes hay que crear el script
+
+#!/bin/bash
+
+ls -l /home > prueba.txt
+
+si ponemos todo astedisco cada minuto lo genera
+
+
+#!/bin/bash
+
+while [ true ]; do
+sleep 30
+ls -l /home/julia/cron_tab > archivo_$(date +"%Y%m%d_%H%M%S").txt
+done
+
+
